@@ -1,0 +1,15 @@
+.react-tabs__tab--selected {
+    border: none !important;
+    border-bottom: 2px solid #FFD639 !important;
+    color: #FFD639 !important;
+    background-color: transparent !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+}
+
+.react-tabs__tab-list {
+    margin-top: 3rem !important;
+    color: white !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}

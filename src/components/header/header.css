@@ -1,0 +1,45 @@
+.headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.searchField {
+    padding: 0.5em 0.5em;
+    border-radius: 3px;
+    background-color: rgb(255 255 255 / 32%);
+    font-size: 18px;
+    outline: none;
+    border: none;
+    color: white;
+    margin-right: 0rem;
+    width: 20rem;
+}
+
+.searchField ::placeholder {
+    color: rgb(255, 255, 255);
+}
+
+.formContainer {
+    position: relative;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+}
+
+.linksContainer {
+    display: none;
+}
+
+@media screen and (max-width:700px) {
+    .linksContainer {
+        display: block;
+    }
+
+    .headerContainer {
+        display: none;
+    }
+}

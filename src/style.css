@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+
+
+}
+
+body {
+    background-image: url("../src/assets/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}

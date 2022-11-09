@@ -1,0 +1,78 @@
+.nothing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 64vh;
+    gap: 1rem;
+}
+
+.nothingText {
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 21px;
+    text-align: center;
+}
+
+.favHead {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.cities {
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: 15px;
+}
+
+.removeAll {
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.favBody {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.elementTwo {
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 38px;
+}
+
+.elementThree {
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: 21px;
+}
+
+.threeElements {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+span.deg {
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 19px;
+}
