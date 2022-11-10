@@ -1,10 +1,47 @@
 import "./homeTab.css";
+import { useSelector } from "react-redux";
+// import Skeleton from "react-loading-skeleton";
+// import "react-loading-skeleton/dist/skeleton.css";
 
 const HomeTab = () => {
+  const Data = useSelector((state: any) => state.weatherData.value);
+  console.log("data", Data);
+
+  const previousData = JSON.parse(localStorage.getItem("fav") || "[]");
+
+  const addFav = () => {
+    const arr: any[] = [];
+    previousData.map((user: any) => {
+      // console.log("previousData.user.location.woeid", user.location.woeid);
+      if (user.location.woeid === Data.location.woeid) {
+        arr.push("exists");
+      }
+    });
+    if (arr.includes("exists")) {
+      alert("already exists");
+    } else {
+      if (Data !== "") {
+        previousData.push(Data);
+        localStorage.setItem("fav", JSON.stringify(previousData));
+      } else {
+        alert("empty");
+      }
+    }
+  };
+
+  // const existData: any[] = [];
+  // previousData.map((user: any) => {
+  //   if (user.location.woeid === Data.location.woeid) {
+  //     existData.push("pushed");
+  //   }
+  // });
   return (
     <div>
       <div className="homeTabContainer">
-        <div className="locationName">udupi, karnataka</div>
+        <div className="locationName">
+          {Data && Data.location && Data.location.city},&nbsp;
+          {Data && Data.location && Data.location.country}
+        </div>
         <div className="addFav">
           <div className="favImg">
             <img
@@ -13,7 +50,9 @@ const HomeTab = () => {
               className="heartImg"
             />
           </div>
-          <div className="favText">Add to favourite</div>
+          <div className="favText" onClick={addFav}>
+            Add to favourite
+          </div>
         </div>
         <div className="weatherDisplay">
           <div className="weatherImg">
@@ -23,8 +62,16 @@ const HomeTab = () => {
               className="sunnyImg"
             />
           </div>
-          <div className="weatherDegree">87</div>
-          <div className="weatherDetail">Mostly Sunny</div>
+          <div className="weatherDegree">
+            {Data.current_observation &&
+              Data.current_observation.condition &&
+              Data.current_observation.condition.temperature}
+          </div>
+          <div className="weatherDetail">
+            {Data.current_observation &&
+              Data.current_observation.condition &&
+              Data.current_observation.condition.text}
+          </div>
         </div>
       </div>
       <div className="footerContainer">
@@ -39,7 +86,16 @@ const HomeTab = () => {
 
           <div className="minMax">
             <div className="minMaxText">Min - Max</div>
-            <div className="minMaxDegree">75&deg; - 90&deg;</div>
+            <div className="minMaxDegree">
+              {Data.current_observation &&
+                Data.current_observation.condition &&
+                Data.current_observation.condition.temperature - 3}
+              &deg; -{" "}
+              {Data.current_observation &&
+                Data.current_observation.condition &&
+                Data.current_observation.condition.temperature + 3}
+              &deg;
+            </div>
           </div>
         </div>
 
@@ -54,7 +110,12 @@ const HomeTab = () => {
 
           <div className="minMax">
             <div className="minMaxText">Precipitation</div>
-            <div className="minMaxDegree">0%</div>
+            <div className="minMaxDegree">
+              {Data.current_observation &&
+                Data.current_observation.atmosphere &&
+                Data.current_observation.atmosphere.pressure}
+              %
+            </div>
           </div>
         </div>
 
@@ -69,7 +130,12 @@ const HomeTab = () => {
 
           <div className="minMax">
             <div className="minMaxText">Humidity</div>
-            <div className="minMaxDegree">47%</div>
+            <div className="minMaxDegree">
+              {Data.current_observation &&
+                Data.current_observation.atmosphere &&
+                Data.current_observation.atmosphere.humidity}
+              %
+            </div>
           </div>
         </div>
 
@@ -84,7 +150,13 @@ const HomeTab = () => {
 
           <div className="minMax">
             <div className="minMaxText">Wind</div>
-            <div className="minMaxDegree">4 mph</div>
+            <div className="minMaxDegree">
+              {" "}
+              {Data.current_observation &&
+                Data.current_observation.wind &&
+                Data.current_observation.wind.speed}{" "}
+              mph
+            </div>
           </div>
         </div>
 
@@ -99,7 +171,12 @@ const HomeTab = () => {
 
           <div className="minMax">
             <div className="minMaxText">Visibility</div>
-            <div className="minMaxDegree">12 mph</div>
+            <div className="minMaxDegree">
+              {Data.current_observation &&
+                Data.current_observation.atmosphere &&
+                Data.current_observation.atmosphere.visibility}{" "}
+              mph
+            </div>
           </div>
         </div>
       </div>

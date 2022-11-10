@@ -2,3 +2,13 @@
     margin: 5% 10%;
     height: 100vh;
 }
+
+@media screen and (max-width:780px) {
+    .homeContainer {
+        margin: 4% 1%;
+    }
+
+    .footerContainer {
+        gap: 2rem;
+    }
+}

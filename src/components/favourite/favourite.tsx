@@ -2,11 +2,16 @@ import { useState } from "react";
 import "./favourite.css";
 
 const Favourite = () => {
+  const [dialog, setDialog] = useState(false);
   const [fav, setFav] = useState(false);
+
+  const favData = JSON.parse(localStorage.getItem("fav") || "[]");
+  console.log("favData", favData);
+
   return (
     <div>
       <div className="favourites">
-        {fav ? (
+        {JSON.stringify(favData) === "[]" ? (
           <div className="nothing">
             <div className="nothingImg">
               <img
@@ -20,35 +25,89 @@ const Favourite = () => {
         ) : (
           <div className="favContainer">
             <div className="favHead">
-              <div className="cities">6 City added as favourite</div>
-              <div className="removeAll">Remove All</div>
+              <div className="cities">
+                {favData.length} City added as favourite
+              </div>
+              <div
+                className="removeAll"
+                onClick={() => {
+                  setDialog(true);
+                }}
+              >
+                Remove All
+              </div>
             </div>
-            <div className="favBody">
-              <div className="state">Udupi, Karnataka</div>
-              <div className="threeElements">
-                <div className="elementOne">
-                  <img
-                    src={require("../../assets/icon_mostly_sunny_small.png")}
-                    alt=""
-                    className="elementOneImg"
-                  />
-                </div>
-                <div className="elementTwo">
-                  31<span className="deg">&#8451;</span>
-                </div>
-                <div className="elementThree">Mostly Sunny</div>
-              </div>
-              <div className="fillHeart">
-                <img
-                  src={require("../../assets/icon_favourite_Active.png")}
-                  alt=""
-                  className="fillHeartImg"
-                />
-              </div>
+            <div className="favColumnReverse">
+              {favData.map((favPlace: any, i: any) => {
+                return (
+                  <div className="favBodyContainer" key={i}>
+                    <div className="favBody">
+                      <div className="state">
+                        {favPlace.location.city}, {favPlace.location.country}
+                      </div>
+                      <div className="threeElements">
+                        <div className="elementOne">
+                          <img
+                            src={require("../../assets/icon_mostly_sunny_small.png")}
+                            alt=""
+                            className="elementOneImg"
+                          />
+                        </div>
+                        <div className="elementTwo">
+                          {favPlace.current_observation.condition.temperature}
+                          <span className="deg">&#8451;</span>
+                        </div>
+                        <div className="elementThree">
+                          {favPlace.current_observation.condition.text}
+                        </div>
+                      </div>
+                      <div className="fillHeart">
+                        <img
+                          src={require("../../assets/icon_favourite_Active.png")}
+                          alt=""
+                          className="fillHeartImg"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
       </div>
+      {dialog ? (
+        <div>
+          <div className="modalContainer">
+            <div className="overlay">
+              <div className="modalContent">
+                <div className="infoModal">
+                  Are you sure want to remove all the favourites?
+                </div>
+                <div className="modalButtons">
+                  <form action="" className="modalForm">
+                    <button className="btnNo" onClick={() => setDialog(false)}>
+                      No
+                    </button>
+                    <button
+                      className="btnNo"
+                      type="button"
+                      onClick={() => {
+                        localStorage.removeItem("fav");
+                        setDialog(false);
+                      }}
+                    >
+                      Yes
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
