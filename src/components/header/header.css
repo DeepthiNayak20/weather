@@ -29,3 +29,48 @@
     top: 0.8rem;
     right: 0.8rem;
 }
+
+.headerMobile {
+    display: none;
+}
+
+.sideBarMobile {
+    display: block;
+}
+
+.burger {
+    display: none;
+}
+
+.linkList {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+}
+
+.tabsSelect {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.tabLinks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ffffff85;
+    padding-bottom: 0.2rem;
+}
+
+.linkNames {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 13px;
+    letter-spacing: 0;
+    line-height: 15px;
+}

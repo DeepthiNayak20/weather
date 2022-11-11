@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import "./header.css";
 import { useDispatch } from "react-redux";
 import { weather } from "../../redux/weatherSlice";
+import { Link } from "react-router-dom";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import HomeTab from "../homeTab/homeTab";
+import Favourite from "../favourite/favourite";
+import Recent from "../recent/recent";
 
 const Header = () => {
   const [fetchedData, setFetchedData] = useState<any>([]);
   const [search, setSearch] = useState("udupi");
+  const [nav, setNav] = useState(false);
 
   const searchData = JSON.parse(localStorage.getItem("search") || "[]");
 
@@ -89,6 +95,54 @@ const Header = () => {
           </form>
         </div>
       </div>
+      <div
+        className="burger"
+        onClick={() => {
+          setNav(true);
+        }}
+      >
+        Burger
+      </div>
+      {nav && (
+        <div className="linkList">
+          {" "}
+          <Link
+            className="linkNames"
+            to="/"
+            onClick={() => {
+              setNav(false);
+            }}
+          >
+            HOME
+          </Link>
+          <Link
+            className="linkNames"
+            to="/fav"
+            onClick={() => {
+              setNav(false);
+            }}
+          >
+            FAVOURITE
+          </Link>
+          <Link
+            className="linkNames"
+            to="/recent"
+            onClick={() => {
+              setNav(false);
+            }}
+          >
+            RECENT SEARCH
+          </Link>
+          <div
+            className="close"
+            onClick={() => {
+              setNav(false);
+            }}
+          >
+            close
+          </div>
+        </div>
+      )}
     </div>
   );
 };

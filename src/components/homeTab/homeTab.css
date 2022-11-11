@@ -22,6 +22,10 @@
     /* text-align: center; */
 }
 
+.textColor {
+    color: #FAD05B !important;
+}
+
 img.heartImg {
     height: 17px;
     width: 18px;
@@ -30,7 +34,6 @@ img.heartImg {
 
 .favText {
     color: #FFFFFF;
-    font-family: Roboto;
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 0;

@@ -10,8 +10,15 @@
 }
 
 body {
-    background-image: url("../src/assets/background.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+    height: 100vh;
+}
+
+.backgroundImg {
+    position: fixed;
+    z-index: -10;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
 }

@@ -1,40 +1,62 @@
 import "./homeTab.css";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { Tab, TabList } from "react-tabs";
 // import Skeleton from "react-loading-skeleton";
 // import "react-loading-skeleton/dist/skeleton.css";
 
 const HomeTab = () => {
+  const [favHeart, setFavHeart] = useState(false);
   const Data = useSelector((state: any) => state.weatherData.value);
   console.log("data", Data);
 
   const previousData = JSON.parse(localStorage.getItem("fav") || "[]");
-
+  // const favFunc = () => {
+  //   const arr: any[] = [];
+  //   previousData.map((user: any, i: number) => {
+  //     // console.log("previousData.user.location.woeid", user.location.woeid);
+  //     if (
+  //       user &&
+  //       user.location &&
+  //       user.location.woeid === Data &&
+  //       Data.location &&
+  //       Data.location.woeid
+  //     ) {
+  //       arr.push("exists");
+  //     }
+  //   });
+  //   if (arr.includes("exists")) {
+  //     // setFavHeart(false);
+  //     alert("fav");
+  //   }
+  // };
   const addFav = () => {
     const arr: any[] = [];
-    previousData.map((user: any) => {
+    previousData.map((user: any, i: number) => {
       // console.log("previousData.user.location.woeid", user.location.woeid);
       if (user.location.woeid === Data.location.woeid) {
         arr.push("exists");
       }
     });
+
     if (arr.includes("exists")) {
       alert("already exists");
     } else {
       if (Data !== "") {
         previousData.push(Data);
         localStorage.setItem("fav", JSON.stringify(previousData));
+        setFavHeart(!favHeart);
       } else {
         alert("empty");
       }
     }
   };
 
-  // const existData: any[] = [];
-  // previousData.map((user: any) => {
-  //   if (user.location.woeid === Data.location.woeid) {
-  //     existData.push("pushed");
-  //   }
-  // });
+  // useEffect(() => {
+  //   favFunc();
+  // }, [Data]);
+
+  const onDelete = () => {};
   return (
     <div>
       <div className="homeTabContainer">
@@ -42,18 +64,42 @@ const HomeTab = () => {
           {Data && Data.location && Data.location.city},&nbsp;
           {Data && Data.location && Data.location.country}
         </div>
-        <div className="addFav">
-          <div className="favImg">
-            <img
-              src={require("../../assets/icon_favourite.png")}
-              alt="img"
-              className="heartImg"
-            />
+        {!favHeart ? (
+          <div
+            className="addFav"
+            onClick={() => {
+              addFav();
+            }}
+          >
+            <div className="favImg">
+              <img
+                src={require("../../assets/icon_favourite.png")}
+                alt="img"
+                className="heartImg"
+              />
+            </div>
+            <div className="favText">Add to favourite</div>
           </div>
-          <div className="favText" onClick={addFav}>
-            Add to favourite
+        ) : (
+          <div
+            className="addFav"
+            onClick={() => {
+              setFavHeart(!favHeart);
+            }}
+          >
+            <div className="favImg">
+              <img
+                src={require("../../assets/icon_favourite_Active.png")}
+                alt="img"
+                className="heartImg"
+              />
+            </div>
+            <div className="favText textColor" onClick={onDelete}>
+              Added to favourite
+            </div>
           </div>
-        </div>
+        )}
+
         <div className="weatherDisplay">
           <div className="weatherImg">
             <img

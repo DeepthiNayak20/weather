@@ -24,6 +24,21 @@ const Favourite = () => {
           </div>
         ) : (
           <div className="favContainer">
+            <div className="favHeadContainer">
+              <div className="favleft">
+                <div className="backBtn">back</div>
+                <div className="favoriteHead">Favourite</div>
+              </div>
+              <div className="favright">
+                <div className="search">
+                  <img
+                    src={require("../../assets/icon_search_white.png")}
+                    alt=""
+                    style={{ background: "green" }}
+                  />
+                </div>
+              </div>
+            </div>
             <div className="favHead">
               <div className="cities">
                 {favData.length} City added as favourite
@@ -37,6 +52,7 @@ const Favourite = () => {
                 Remove All
               </div>
             </div>
+
             <div className="favColumnReverse">
               {favData.map((favPlace: any, i: any) => {
                 return (

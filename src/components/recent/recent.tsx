@@ -65,7 +65,9 @@ const Recent = () => {
                           <span className="deg">&#8451;</span>
                         </div>
                         <div className="elementThree">
-                          {searchData.current_observation.condition.text}
+                          {searchData.current_observation &&
+                            searchData.current_observation.condition &&
+                            searchData.current_observation.condition.text}
                         </div>
                       </div>
                       <div className="fillHeart">
